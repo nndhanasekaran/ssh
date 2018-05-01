@@ -6,25 +6,23 @@ This salt formula will install ssh package, start sshd service and change the co
 
 Examples: (Pillar)
 
-/srv/pillar/default.sls
---------------------------------
+cat /srv/pillar/default.sls
 ssh:
   PermitRootLogin: 'no'
   PasswordAuthentication: 'yes'
   PubkeyAuthentication: 'yes'
   Banner: '/etc/issue'
---------------------------------
 
-/srv/pillar/ssh/A0DF.sls
---------------------------------
+
+cat /srv/pillar/ssh/A0DF.sls
 ssh:
   PermitRootLogin: 'yes'
   PasswordAuthentication: 'yes'
---------------------------------
+
 
 For A0DF minion, the PermitRootLogin will taken from A0DF.sls file (that is 'yes') not from default.sls
 
-/srv/pillar/ssh/init.sls
+cat /srv/pillar/ssh/init.sls
 ##Look for RID.sls file and give the mentioned values. Don't give error message if RID.sls is missing.
 
 {% include 'ssh/' + grains['id'][0:4] + '.sls' ignore missing %}
