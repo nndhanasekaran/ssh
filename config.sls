@@ -1,7 +1,7 @@
 ##Get the paramters from pillar. The default parameters are in default.sls pillar file and 
-##we can override by creating file inside pillar/ssh/<RID>.sls file. 
+##we can override by creating file inside pillar/ssh/minionid.sls file. 
 ##We can change any parameter eventhough it is not listed in default parameters. 
-##The RID.sls file is preccedence above default.
+##The minionid.sls file is preccedence above default.
 {% for param, value in pillar.get('ssh', {}).items() %}
 
 {{ param }}:
