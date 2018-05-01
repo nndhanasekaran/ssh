@@ -27,7 +27,7 @@ For A0DF minion, the PermitRootLogin will taken from A0DF.sls file (that is 'yes
 ```
 ##Look for minion_id sls file. Don't give error message if file for minion is missing.
 
-{% include 'ssh/' + grains['id'][0:3] + '.sls' ignore missing %}
+{% include 'ssh/' + grains['id'] + '.sls' ignore missing %}
 ```
 
 ## Comptible
