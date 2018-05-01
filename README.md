@@ -13,7 +13,8 @@ ssh:
   PubkeyAuthentication: 'yes'
   Banner: '/etc/issue'
 ```
-### cat /srv/pillar/ssh/A0DF.sls
+### cat /srv/pillar/ssh/web.sls
+
 ```
 ssh:
   PermitRootLogin: 'yes'
@@ -22,8 +23,12 @@ ssh:
 For A0DF minion, the PermitRootLogin will taken from A0DF.sls file (that is 'yes') not from default.sls
 
 ### cat /srv/pillar/ssh/init.sls
-```
-##Look for RID.sls file and give the mentioned values. Don't give error message if RID.sls is missing.
 
-{% include 'ssh/' + grains['id'][0:4] + '.sls' ignore missing %}
 ```
+##Look for minion_id sls file. Don't give error message if file for minion is missing.
+
+{% include 'ssh/' + grains['id'][0:3] + '.sls' ignore missing %}
+```
+
+## Comptible
+This salt formula is tested on RHEL and SUSE servers. 
