@@ -1,0 +1,39 @@
+#########################################################################
+Module: ssh
+Owner: ONB Engnieering
+Version: 1.0
+Last Update: 09 April 2018
+#########################################################################
+USE:
+This module helps to manage the ssh package, service and configuration for linux servers.
+
+USAGE:
+sudo salt <target> state.apply ssh
+	
+DETAILS:
+It will install ssh package, start sshd service and change the configuration based on pillars. Eventhough the ssh package is installed and serivce started from templates, this module ensure those before changing the configurations. The main purpose os this module is to change/controll the sshd parameters based on customer requirement. The default ssh settings are declered in pillar/default.sls. The default settings can be override by keeping the values in pillar/ssh/RID.sls. This gives flexiability to change the ssh parametes based on customer requirements. Eventhough, the default pillar contains only few parametes, we can change any sshd parameters. It uses augeas configuration file management tool to change the parameters. So this module will install python-augeas package additionally. 
+
+Examples: (Pillar)
+
+/srv/pillar/default.sls
+--------------------------------
+ssh:
+  PermitRootLogin: 'no'
+  PasswordAuthentication: 'yes'
+  PubkeyAuthentication: 'yes'
+  Banner: '/etc/issue'
+--------------------------------
+
+/srv/pillar/ssh/A0DF.sls
+--------------------------------
+ssh:
+  PermitRootLogin: 'yes'
+  PasswordAuthentication: 'yes'
+--------------------------------
+
+For A0DF customer, the PermitRootLogin will taken from A0DF.sls file (that is 'yes') not from default.sls
+
+##############################################################################
+Revison changes:
+v1.0 - Inital Script
+##############################################################################
